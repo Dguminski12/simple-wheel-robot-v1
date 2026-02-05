@@ -6,6 +6,10 @@ AIN1 = Pin(25, Pin.OUT)
 AIN2 = Pin(26, Pin.OUT)
 PWMA = PWM(Pin(27), freq=1000)
 
+BIN1 = Pin(14, Pin.OUT)
+BIN2 = Pin(12, Pin.OUT)
+PWMB = PWM(Pin(13), freq=1000)
+
 PWMA.duty(0) # Start with motor stopped
 
 while True:
