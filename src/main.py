@@ -19,4 +19,11 @@ while True:
     PWMA.duty(0) # Stop motor
     time.sleep(1) # Pause for 1 second
 
-    
+    #Backwards
+    AIN1.off()
+    AIN2.on()
+    PWMA.duty(512) # Set motor speed to 50%
+    time.sleep(2) # Run backward for 2 seconds
+
+    PWMA.duty(0) # Stop motor
+    time.sleep(1) # Pause for 1 second
