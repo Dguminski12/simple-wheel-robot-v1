@@ -1,4 +1,3 @@
-from turtle import speed
 from machine import Pin, PWM
 from esp_server import start_server
 import time
