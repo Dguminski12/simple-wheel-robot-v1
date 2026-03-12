@@ -15,7 +15,7 @@ wss.on('connection', function connection(ws) {
         const cmd = message.toString();
         console.log("Received:", cmd);
 
-        const ESP_IP = "192.168.1.xxx"; // ← put your ESP IP here
+        const ESP_IP = "192.168.1.124"; // ← put your ESP IP here
 
         http.get(`http://${ESP_IP}/move/?cmd=${cmd}`, (res) => {
             console.log("Sent to ESP:", cmd);
