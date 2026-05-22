@@ -1,44 +1,91 @@
-# Robot Lab 0 — Simple Wheeled Robot (MicroPython)
+# Simple Wheel Robot V1
 
-## Overview
-This phase focuses on getting a basic two-wheeled robot moving using MicroPython on the ESP32.  
-The goal is to validate motor wiring, direction control, and core movement functions before adding complexity.
+A MicroPython-powered ESP32 wheeled robot project focused on learning embedded systems, motor control, networking, and remote robot operation.
+
+This repository originally started as a basic motor movement test platform, but has now progressed into a WiFi-controlled robot with a Node.js control server and ESP32 command handling.
 
 ---
 
-## Objectives
-- Verify motor wiring is correct
-- Implement basic movement controls
-- Ensure consistent and predictable motor behaviour
+## Current Project Status
+
+Current progress includes:
+
+### Completed
+- ESP32 configured with MicroPython
+- Basic differential drive movement
+- Forward, reverse, left, right, and stop controls
+- Reusable motor helper functions
+- GPIO motor driver integration
+- WiFi connectivity on the ESP32
+- HTTP command server running on the ESP32
+- Node.js control server sending commands to the robot
+- Basic command handling between PC and robot
+- Initial power system planning and BOM
+
+### In Progress
+- Improving command reliability
+- Cleaning up project structure
+- Refining movement behaviour
+- Preparing for onboard battery integration
+
+### Planned
+- Web dashboard / browser controls
+- Speed control using PWM
+- Acceleration smoothing
+- Obstacle detection
+- Camera support
+- Autonomous behaviours
+- Better chassis and cable management
 
 ---
 
 ## Features
+
+### Robot Movement
 - Forward movement
 - Reverse movement
-- Turning left
-- Turning right
-- Stop function
+- Left turn
+- Right turn
+- Stop command
 
-No advanced features are included at this stage:
-- ❌ No WiFi connectivity  
-- ❌ No web interface  
-- ❌ No state machine  
-- ❌ No acceleration or speed control  
+### Networking
+- ESP32 WiFi connection
+- HTTP command handling
+- Remote control from external server
+
+### Software Structure
+- Modular movement helper functions
+- Separate control/server logic
+- Expandable project layout for future upgrades
+
+---
+
+## Tech Stack
+
+### Hardware
+- ESP32
+- DC motors
+- Motor driver module
+- Wheeled chassis
+- Planned battery power system
+
+### Software
+- MicroPython
+- Python
+- Node.js
+- HTTP-based command communication
 
 ---
 
 ## Project Structure
-```
-robot-lab-0/
+
+```text
+simple-wheel-robot-v1/
 │
-├── src/
-│   ├── motor.py     # Motor control helpers
-│   └── main.py      # Simple movement test script
-│
-├── docs/
-│   └── wiring.md    # Pin mapping and wiring notes
-│
+├── src/                 # ESP32 robot code
+├── docs/                # Wiring notes and hardware docs
+├── server/              # Node.js control server
+├── power/               # Power system planning/BOM
 └── README.md
 ```
 
@@ -46,49 +93,58 @@ robot-lab-0/
 
 ## How It Works
 
-### `motor.py`
-Contains reusable helper functions for controlling the motors:
-- `forward()`
-- `reverse()`
-- `left()`
-- `right()`
-- `stop()`
+### ESP32 Side
+The ESP32:
+- Connects to WiFi
+- Runs the robot control code
+- Receives HTTP commands
+- Controls motor GPIO outputs
 
-These functions directly control GPIO pins connected to the motor driver.
-
----
-
-### `main.py`
-A simple test routine that:
-1. Moves forward  
-2. Stops  
-3. Moves backward  
-4. Turns left/right  
-5. Stops again  
-
-Used to confirm:
-- Wiring is correct  
-- Motor directions are correct  
+Movement commands are translated into motor driver signals for differential steering.
 
 ---
 
-## Success Criteria (Phase 0)
-- ✅ Motors spin in the correct direction  
-- ✅ Robot moves forward, reverse, left, and right  
-- ✅ Robot stops reliably  
-- ✅ Code runs consistently without errors  
+### Node.js Server
+The Node.js server:
+- Sends commands to the ESP32
+- Acts as the bridge between the controller and robot
+- Will eventually support a browser dashboard/UI
 
 ---
 
-## Next Steps (Phase 1 Preview)
-Once this phase is complete, the next upgrades will include:
-- Onboard battery power system (NiMH + buck converter)
-- ESP32 WiFi connectivity
-- Remote control via web dashboard
-- Basic command protocol between controller and robot
+## Development Goals
+
+This project is primarily being used to develop practical skills in:
+
+- Embedded programming
+- Robotics fundamentals
+- Motor control
+- Networking and communication
+- Remote systems
+- Project structure and documentation
+- Hardware/software integration
+
+---
+
+## Next Major Milestone
+
+The next major upgrade is planned to be:
+
+1. Stable onboard battery power
+2. Browser-based remote controls
+3. PWM speed control
+4. Smoother driving behaviour
+5. Safer shutdown and stop handling
 
 ---
 
 ## Notes
-- If movement directions are incorrect, swap motor polarity or adjust logic in `motor.py`
-- Keep this phase as simple as possible — avoid adding extra features too early
+
+This project intentionally started simple and is being expanded iteratively.
+
+The goal is to build a strong foundation before introducing more advanced robotics concepts like:
+- autonomy
+- sensor fusion
+- SLAM
+- computer vision
+- advanced navigation
